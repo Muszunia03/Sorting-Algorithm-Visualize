@@ -52,17 +52,32 @@ void selectionSortVisualization(std::vector<int>& array) {
         }
     }
 }
-void mergeSortVisualization(std::vector<int>& array) {
-    int n = array.size();
-}
+
 void insertionSoryVisualization(std::vector<int>& array) {
+    int n = array.size();
+    for (int i = 1; i < n; ++i) {
+        int element = array[i];
+        int j = i - 1;
+
+        while (j >= 0 && array[j] > element) {
+            array[j + 1] = array[j];
+            j = j - 1;
+        }
+        array[j + 1] = element;
+        printArray(array, j + 1, i);
+        delay(100);
+    }
+}
+
+void mergeSortVisualization(std::vector<int>& array) {
     int n = array.size();
 }
 
 void displayTimeComplexity() {
     std::cout << "\nTime Complexity of Sorting Algorithms:" << std::endl;
-    std::cout << "Bubble Sort - Best Case: O(n), Average Case: O(n^2), Worst Case: O(n^2)" << std::endl;
-    std::cout << "Selection Sort - Best, Average, and Worst Case: O(n^2)" << std::endl;
+    std::cout << "Bubble Sort - Best Case: O(n), Average and Worst Case: O(n^2)" << std::endl;
+    std::cout << "Selection Sort - Best, Average and Worst Case: O(n^2)" << std::endl;
+    std::cout << "Insertion Sort - Best Case: O(n), Average and Worst Case: O(n^2)" << std::endl;
 }
 
 int main() {
@@ -89,6 +104,17 @@ int main() {
     selectionSortVisualization(array);
 
     std::cout << "\nSorted array with Selection Sort:" << std::endl;
+    printArray(array);
+
+    std::generate(array.begin(), array.end(), []() { return std::rand() % MAX_VALUE; });
+
+    std::cout << "\nInitial array for Selection Sort:" << std::endl;
+    printArray(array);
+
+    std::cout << "\nSelection Sort process:" << std::endl;
+    insertionSoryVisualization(array);
+
+    std::cout << "\nSorted array with Insertion Sort:" << std::endl;
     printArray(array);
 
     displayTimeComplexity();
