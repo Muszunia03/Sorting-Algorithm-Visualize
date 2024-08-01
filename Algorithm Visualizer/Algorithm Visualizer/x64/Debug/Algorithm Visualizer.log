@@ -2,6 +2,6 @@
 C:\Users\machm\Documents\Nauka\Algorithm Visualizer\Algorithm Visualizer\Algorithm Visualizer.cpp(27,11): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
 C:\Users\machm\Documents\Nauka\Algorithm Visualizer\Algorithm Visualizer\Algorithm Visualizer.cpp(40,11): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
 C:\Users\machm\Documents\Nauka\Algorithm Visualizer\Algorithm Visualizer\Algorithm Visualizer.cpp(57,11): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-C:\Users\machm\Documents\Nauka\Algorithm Visualizer\Algorithm Visualizer\Algorithm Visualizer.cpp(73,11): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-C:\Users\machm\Documents\Nauka\Algorithm Visualizer\Algorithm Visualizer\Algorithm Visualizer.cpp(85,25): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\machm\Documents\Nauka\Algorithm Visualizer\Algorithm Visualizer\Algorithm Visualizer.cpp(126,25): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\machm\Documents\Nauka\Algorithm Visualizer\Algorithm Visualizer\Algorithm Visualizer.cpp(167,51): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
   Algorithm Visualizer.vcxproj -> C:\Users\machm\Documents\Nauka\Algorithm Visualizer\x64\Debug\Algorithm Visualizer.exe

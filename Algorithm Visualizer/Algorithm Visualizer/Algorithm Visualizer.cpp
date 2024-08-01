@@ -69,15 +69,56 @@ void insertionSoryVisualization(std::vector<int>& array) {
     }
 }
 
-void mergeSortVisualization(std::vector<int>& array) {
-    int n = array.size();
+void merge(std::vector<int>& array, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    std::vector<int> leftArray(n1);
+    std::vector<int> rightArray(n2);
+    for (int i = 0; i < n1; ++i)
+        leftArray[i] = array[left + i];
+    for (int j = 0; j < n2; ++j)
+        rightArray[j] = array[mid + 1 + j];
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (leftArray[i] <= rightArray[j]) {
+            array[k] = leftArray[i];
+            i++;
+        }
+        else {
+            array[k] = rightArray[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < n1) {
+        array[k] = leftArray[i];
+        i++;
+        k++;
+    }
+    while (j < n2) {
+        array[k] = rightArray[j];
+        j++;
+        k++;
+    }
+    printArray(array);
+    delay(100);
+}
+
+void mergeSortVisualization(std::vector<int>& array, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSortVisualization(array, left, mid);
+        mergeSortVisualization(array, mid + 1, right);
+        merge(array, left, mid, right);
+    }
 }
 
 void displayTimeComplexity() {
     std::cout << "\nTime Complexity of Sorting Algorithms:" << std::endl;
-    std::cout << "Bubble Sort - Best Case: O(n), Average and Worst Case: O(n^2)" << std::endl;
-    std::cout << "Selection Sort - Best, Average and Worst Case: O(n^2)" << std::endl;
-    std::cout << "Insertion Sort - Best Case: O(n), Average and Worst Case: O(n^2)" << std::endl;
+    std::cout << "Bubble Sort - Best Case: O(n), Average Case: O(n^2), Worst Case: O(n^2)" << std::endl;
+    std::cout << "Selection Sort - Best, Average, and Worst Case: O(n^2)" << std::endl;
+    std::cout << "Insertion Sort - Best Case: O(n), Average Case: O(n^2), Worst Case: O(n^2)" << std::endl;
+    std::cout << "Merge Sort - Best, Average, and Worst Case: O(n log n)" << std::endl;
 }
 
 int main() {
@@ -115,6 +156,17 @@ int main() {
     insertionSoryVisualization(array);
 
     std::cout << "\nSorted array with Insertion Sort:" << std::endl;
+    printArray(array);
+
+    std::generate(array.begin(), array.end(), []() { return std::rand() % MAX_VALUE; });
+
+    std::cout << "\nInitial array for Merge Sort:" << std::endl;
+    printArray(array);
+
+    std::cout << "\nMerge Sort process:" << std::endl;
+    mergeSortVisualization(array, 0, array.size() - 1);
+
+    std::cout << "\nSorted array with Merge Sort:" << std::endl;
     printArray(array);
 
     displayTimeComplexity();
