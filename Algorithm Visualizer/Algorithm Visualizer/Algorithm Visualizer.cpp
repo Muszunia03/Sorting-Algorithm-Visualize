@@ -3,9 +3,10 @@
 #include <algorithm>
 #include <thread>
 #include <chrono>
+#include <cstdlib>
 
 const int ARRAY_SIZE = 20;
-const int MAX_VALUE = 50;
+const int MAX_VALUE = 20;
 
 void printArray(const std::vector<int>& array, int highlight1 = -1, int highlight2 = -1) {
     for (int i = 0; i < array.size(); ++i) {
@@ -53,12 +54,11 @@ void selectionSortVisualization(std::vector<int>& array) {
     }
 }
 
-void insertionSoryVisualization(std::vector<int>& array) {
+void insertionSortVisualization(std::vector<int>& array) {
     int n = array.size();
     for (int i = 1; i < n; ++i) {
         int element = array[i];
         int j = i - 1;
-
         while (j >= 0 && array[j] > element) {
             array[j + 1] = array[j];
             j = j - 1;
@@ -113,12 +113,30 @@ void mergeSortVisualization(std::vector<int>& array, int left, int right) {
     }
 }
 
+bool isSorted(const std::vector<int>& array) {
+    for (int i = 0; i < array.size() - 1; ++i) {
+        if (array[i] > array[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void bogoSortVisualization(std::vector<int>& array) {
+    while (!isSorted(array)) {
+        std::random_shuffle(array.begin(), array.end());
+        printArray(array);
+        delay(100);
+    }
+}
+
 void displayTimeComplexity() {
     std::cout << "\nTime Complexity of Sorting Algorithms:" << std::endl;
     std::cout << "Bubble Sort - Best Case: O(n), Average Case: O(n^2), Worst Case: O(n^2)" << std::endl;
     std::cout << "Selection Sort - Best, Average, and Worst Case: O(n^2)" << std::endl;
     std::cout << "Insertion Sort - Best Case: O(n), Average Case: O(n^2), Worst Case: O(n^2)" << std::endl;
     std::cout << "Merge Sort - Best, Average, and Worst Case: O(n log n)" << std::endl;
+    std::cout << "Bogo Sort - Best Case: O(n), Average Case: O((n+1)!), Worst Case: Unbounded" << std::endl;
 }
 
 int main() {
@@ -135,7 +153,6 @@ int main() {
     std::cout << "\nSorted array with Bubble Sort:" << std::endl;
     printArray(array);
 
-    // Generate a new random array for the next sort
     std::generate(array.begin(), array.end(), []() { return std::rand() % MAX_VALUE; });
 
     std::cout << "\nInitial array for Selection Sort:" << std::endl;
@@ -149,11 +166,11 @@ int main() {
 
     std::generate(array.begin(), array.end(), []() { return std::rand() % MAX_VALUE; });
 
-    std::cout << "\nInitial array for Selection Sort:" << std::endl;
+    std::cout << "\nInitial array for Insertion Sort:" << std::endl;
     printArray(array);
 
-    std::cout << "\nSelection Sort process:" << std::endl;
-    insertionSoryVisualization(array);
+    std::cout << "\nInsertion Sort process:" << std::endl;
+    insertionSortVisualization(array);
 
     std::cout << "\nSorted array with Insertion Sort:" << std::endl;
     printArray(array);
@@ -167,6 +184,17 @@ int main() {
     mergeSortVisualization(array, 0, array.size() - 1);
 
     std::cout << "\nSorted array with Merge Sort:" << std::endl;
+    printArray(array);
+
+    std::generate(array.begin(), array.end(), []() { return std::rand() % MAX_VALUE; });
+
+    std::cout << "\nInitial array for Bogo Sort:" << std::endl;
+    printArray(array);
+
+    std::cout << "\nBogo Sort process:" << std::endl;
+    bogoSortVisualization(array);
+
+    std::cout << "\nSorted array with Bogo Sort:" << std::endl;
     printArray(array);
 
     displayTimeComplexity();
